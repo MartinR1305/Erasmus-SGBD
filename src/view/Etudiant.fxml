@@ -6,17 +6,17 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EtudiantController">
    <children>
       <Label layoutX="238.0" layoutY="45.0" text="Etudiant">
          <font>
             <Font size="34.0" />
          </font>
       </Label>
-      <Button layoutX="88.0" layoutY="188.0" mnemonicParsing="false" text="Ajouter un étudiant" />
-      <Button layoutX="238.0" layoutY="188.0" mnemonicParsing="false" text="Modifier un étudiant" />
-      <Button layoutX="397.0" layoutY="188.0" mnemonicParsing="false" text="Supprimer un étudiant" />
-      <Button layoutX="238.0" layoutY="260.0" mnemonicParsing="false" text="Visualiser les étudiants" />
-      <Button layoutX="525.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToHome" text="Retour" />
+      <Button fx:id="ajouter" layoutX="88.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchToAjouterEtudiant" text="Ajouter un étudiant" />
+      <Button fx:id="modifier" layoutX="238.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchToModifierEtudiant" text="Modifier un étudiant" />
+      <Button fx:id="supprimer" layoutX="397.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchToSupprimerEtudiant" text="Supprimer un étudiant" />
+      <Button fx:id="visualiser" layoutX="238.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchToVisualiserEtudiant" text="Visualiser les étudiants" />
+      <Button fx:id="retour" layoutX="525.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToHome" text="Retour" />
    </children>
 </AnchorPane>

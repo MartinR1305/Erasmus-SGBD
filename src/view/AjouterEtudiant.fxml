@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterEtudiantController">
+   <children>
+      <Label layoutX="180.0" layoutY="38.0" text="Ajouter un étudiant">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nom" layoutX="229.0" layoutY="109.0" />
+      <TextField fx:id="prenom" layoutX="229.0" layoutY="146.0" />
+      <Label layoutX="169.0" layoutY="113.0" text="Nom" />
+      <Label layoutX="169.0" layoutY="150.0" text="Prénom" />
+      <TextField fx:id="note" layoutX="259.0" layoutY="200.0" prefHeight="25.0" prefWidth="79.0" />
+      <Label layoutX="169.0" layoutY="204.0" text="Note moyenne" />
+      <Button fx:id="ajouter" layoutX="246.0" layoutY="273.0" mnemonicParsing="false" text="Ajouter">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="retour" layoutX="524.0" layoutY="355.0" mnemonicParsing="false" onAction="#switchToEtudiant" text="Retour" />
+   </children>
+</AnchorPane>
