@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.candidature.CandidatureController">
    <children>
       <Label fx:id="titre" layoutX="180.0" layoutY="40.0" text="CANDIDATURE">
@@ -14,8 +13,8 @@
          </font>
       </Label>
       <Button fx:id="retour" layoutX="534.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToHome" text="Retour" />
-      <Button fx:id="ajouter" layoutX="152.0" layoutY="187.0" mnemonicParsing="false" text="Ajouter" />
-      <Button fx:id="visualiser" layoutX="266.0" layoutY="187.0" mnemonicParsing="false" text="Visualiser" />
-      <Button fx:id="supprimer" layoutX="383.0" layoutY="187.0" mnemonicParsing="false" text="Supprimer" />
+      <Button fx:id="ajouter" layoutX="152.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchToAjouter" text="Ajouter" />
+      <Button fx:id="visualiser" layoutX="266.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchToVisualiser" text="Visualiser" />
+      <Button fx:id="supprimer" layoutX="383.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchToSupprimer" text="Supprimer" />
    </children>
 </AnchorPane>

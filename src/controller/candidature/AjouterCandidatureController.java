@@ -49,7 +49,7 @@ public class AjouterCandidatureController extends ForAllControllers implements I
 		// Cas d'erreur
 		if ((bourse1.getValue() == null && bourse2.getValue() == null) || etudiant.getValue() == null|| enseignant.getValue() == null 
 				|| enseignement1.getValue() == null || enseignement2.getValue() == null || enseignement3.getValue() == null
-				|| !isInteger(note1.getText()) || !isInteger(note2.getText())) {
+				|| !isInteger(note1.getText()) || !isInteger(note2.getText()) || bourse1.getValue() == bourse2.getValue()) {
 			displayMessage(msgError);
 
 		} else {
@@ -57,9 +57,9 @@ public class AjouterCandidatureController extends ForAllControllers implements I
 		}
 	}
 
-	public void switchToHome(ActionEvent event) throws IOException {
+	public void switchToCandidature(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource(".." + File.separator + "view" + File.separator + "Home.fxml"));
+				getClass().getResource(".." + File.separator + ".." + File.separator + "view" + File.separator + "Candidature.fxml"));
 		root = loader.load();
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);

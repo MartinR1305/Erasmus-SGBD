@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterCandidatureController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.candidature.AjouterCandidatureController">
    <children>
-      <Button fx:id="switchToHome" layoutX="534.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToHome" text="Retour" />
+      <Button fx:id="switchToHome" layoutX="534.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToCandidature" text="Retour" />
       <TextField fx:id="note1" layoutX="150.0" layoutY="263.0" />
       <ComboBox fx:id="bourse1" layoutX="113.0" layoutY="35.0" prefWidth="150.0" />
       <ComboBox fx:id="etudiant" layoutX="113.0" layoutY="84.0" prefWidth="150.0" />
