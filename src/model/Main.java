@@ -21,8 +21,8 @@ public class Main extends Application {
 
 	public Main() throws IOException {
 		connectToBDD();
-		createBDD();
-		createData();
+//		createBDD();
+//		createData();
 		closeBDD();
 		System.out.println("ok");
 	}

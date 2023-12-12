@@ -30,4 +30,54 @@ public class HomeController extends ForAllControllers{
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	public void switchToEtudiant(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource(".." + File.separator + "view" + File.separator + "Etudiant.fxml"));
+		root = loader.load();
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void switchToCandidature(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource(".." + File.separator + "view" + File.separator + "Candidature.fxml"));
+		root = loader.load();
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void switchToEnseignant(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource(".." + File.separator + "view" + File.separator + "Enseignant.fxml"));
+		root = loader.load();
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void switchToBourse(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource(".." + File.separator + "view" + File.separator + "Bourse.fxml"));
+		root = loader.load();
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void switchToEnseignement(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource(".." + File.separator + "view" + File.separator + "Enseignement.fxml"));
+		root = loader.load();
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
 }

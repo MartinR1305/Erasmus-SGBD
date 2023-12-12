@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
       <Label layoutX="208.0" layoutY="46.0" text="Accueil">
@@ -13,7 +12,10 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="switchToAjouter" layoutX="136.0" layoutY="223.0" mnemonicParsing="false" onAction="#switchToAjouter" text="Ajouter une candidature" />
-      <Button fx:id="switchToVisualiser" layoutX="314.0" layoutY="223.0" mnemonicParsing="false" onAction="#switchToVisualiser" text="Visualiser les candidatures" />
+      <Button fx:id="switchToAjouter" layoutX="263.0" layoutY="262.0" mnemonicParsing="false" onAction="#switchToCandidature" text="Candidature" />
+      <Button fx:id="switchToVisualiser" layoutX="316.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToEnseignement" text="Enseignement" />
+      <Button fx:id="switchToAjouter1" layoutX="215.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToEnseignant" text="Enseignant" />
+      <Button fx:id="switchToAjouter2" layoutX="128.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToEtudiant" text="Etudiant" />
+      <Button fx:id="switchToAjouter3" layoutX="437.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToBourse" text="Bourse" />
    </children>
 </AnchorPane>
