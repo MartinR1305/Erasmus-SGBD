@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import controller.ForAllControllers;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class ChoixCandidatureVisualiserController extends ForAllControllers implements Initializable {
+public class ChoixCandidatureVisualiserController extends CandidatureController implements Initializable {
 
 	private Stage stage;
 	private Scene scene;
@@ -49,61 +50,27 @@ public class ChoixCandidatureVisualiserController extends ForAllControllers impl
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		ObservableList<Integer> listIDCand = FXCollections.observableArrayList();
+		
+		// Recherche des IDs dans la BDD
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
+				"Smo!Aoki1305")) {
+			String sqlCandidature = "SELECT idCandidature FROM Candidature";
 
-		connectToBDD();
-		try {
-			// Requête SQL pour obtenir les ID de candidature
-			String sql = "SELECT idCandidature FROM Candidature";
-			preparedStatement = conn.prepareStatement(sql);
-			resultSet = preparedStatement.executeQuery();
-
-			// Parcourir les résultats et ajouter les ID à la liste
-			while (resultSet.next()) {
-				int candidatureId = resultSet.getInt("idCandidature");
-				candidatureIds.add(candidatureId);
+			// ID Bourse
+			try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCandidature)) {
+				try (ResultSet resultSet = preparedStatement.executeQuery()) {
+					while (resultSet.next()) {
+						int idCandidature = resultSet.getInt("idCandidature");
+						listIDCand.add(idCandidature);
+					}
+				}
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			// Fermer les ressources
-			try {
-				if (resultSet != null)
-					resultSet.close();
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		
-		closeBDD();
-	}
-
-	public void connectToBDD() {
-
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root", "Smo!Aoki1305");
-
-			stat = conn.createStatement();
-
-		} catch (SQLException ex) {
-			// Gérer les erreurs
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}
-	}
-	
-	public void closeBDD() {
-		// Fermer la connexion
-		try {
-			if (conn != null) {
-				conn.close();
-			}
-		} catch (SQLException ex) {
-			System.out.println("SQLException: " + ex.getMessage());
-		}
+		setComboBoxWithListID(listIDCandidature, listIDCand);
 	}
 
 	public void switchToVisualiser(ActionEvent event) throws IOException {
@@ -111,10 +78,12 @@ public class ChoixCandidatureVisualiserController extends ForAllControllers impl
 			displayMessage(msgError);
 		} else {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-					".." + File.separator + ".." + File.separator + "view" + File.separator + "PlayerView.fxml"));
+					".." + File.separator + ".." + File.separator + "view" + File.separator + "VisualiserCandidature.fxml"));
 			root = loader.load();
+			
 			VisualiserCandidatureController visualiserController = loader.getController();
 			visualiserController.viewCandidature(listIDCandidature.getValue());
+			
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -122,9 +91,9 @@ public class ChoixCandidatureVisualiserController extends ForAllControllers impl
 		}
 	}
 
-	public void switchToHome(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource(".." + File.separator + "view" + File.separator + "Home.fxml"));
+	public void switchToCandidature(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(
+				".." + File.separator + ".." + File.separator + "view" + File.separator + "Candidature.fxml"));
 		root = loader.load();
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);

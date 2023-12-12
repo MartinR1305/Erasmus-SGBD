@@ -46,9 +46,9 @@ public class CandidatureController extends HomeController{
 		stage.show();
 	}
 	
-	public void switchToVisualiser(ActionEvent event) throws IOException {
+	public void switchToChoixVisualiser(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource(".." + File.separator + ".." + File.separator + "view" + File.separator + "VisualiserCandidature.fxml"));
+				getClass().getResource(".." + File.separator + ".." + File.separator + "view" + File.separator + "ChoixCandidatureVisualiser.fxml"));
 		root = loader.load();
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);

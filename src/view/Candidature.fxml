@@ -14,7 +14,7 @@
       </Label>
       <Button fx:id="retour" layoutX="534.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToHome" text="Retour" />
       <Button fx:id="ajouter" layoutX="152.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchToAjouter" text="Ajouter" />
-      <Button fx:id="visualiser" layoutX="266.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchToVisualiser" text="Visualiser" />
+      <Button fx:id="visualiser" layoutX="266.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchToChoixVisualiser" text="Visualiser" />
       <Button fx:id="supprimer" layoutX="383.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchToSupprimer" text="Supprimer" />
    </children>
 </AnchorPane>

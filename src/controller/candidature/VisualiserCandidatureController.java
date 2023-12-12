@@ -1,11 +1,10 @@
 package controller.candidature;
 
-import controller.ForAllControllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class VisualiserCandidatureController extends ForAllControllers{
+public class VisualiserCandidatureController extends CandidatureController{
 	@FXML
 	private Label idBourse1, idBourse2, idCandidature, idEnseignement1, idEnseignement2, idEnseignement3,
 			idRespoErasmus, idRespoLocal, note1, note2, numEtudiant, score;
