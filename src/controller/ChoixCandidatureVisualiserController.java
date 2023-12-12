@@ -25,7 +25,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class ChoixCandidatureController extends ForAllControllers implements Initializable {
+public class ChoixCandidatureVisualiserController extends ForAllControllers implements Initializable {
 
 	private Stage stage;
 	private Scene scene;
@@ -112,7 +112,7 @@ public class ChoixCandidatureController extends ForAllControllers implements Ini
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(
 					".." + File.separator + ".." + File.separator + "view" + File.separator + "PlayerView.fxml"));
 			root = loader.load();
-			VisualiserController visualiserController = loader.getController();
+			VisualiserCandidatureController visualiserController = loader.getController();
 			visualiserController.viewCandidature(listIDCandidature.getValue());
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
