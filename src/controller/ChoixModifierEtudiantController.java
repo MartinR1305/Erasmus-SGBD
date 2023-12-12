@@ -45,15 +45,21 @@ public class ChoixModifierEtudiantController extends HomeController implements I
 
 
 	public void switchToModifierEtudiant(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource(".." + File.separator + "view" + File.separator + "ModifierEtudiant.fxml"));
-		root = loader.load();
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+	    FXMLLoader loader = new FXMLLoader(
+	            getClass().getResource(".." + File.separator + "view" + File.separator + "ModifierEtudiant.fxml"));
+	    root = loader.load();
+	    ModifierEtudiantController modifierEtudiantController = loader.getController();
 
+	    int selectedStudentNumber = listeEtudiant.getValue();
+
+	    modifierEtudiantController.initData(selectedStudentNumber);
+
+	    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	    scene = new Scene(root);
+	    stage.setScene(scene);
+	    stage.show();
 	}
+
 
 
 	public void setComboBoxWithEtudiants(ComboBox<Integer> comboBoxEtudiant) {

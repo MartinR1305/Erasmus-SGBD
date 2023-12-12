@@ -49,7 +49,7 @@ public class AjouterEtudiantController extends HomeController{
 
 	public void creerEtudiant() {
 	    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root", "Babalou1942")) {
-	        // on recupere les valeurs des champs de texte
+	        // on récupère les valeurs des champs de texte
 	        String nomEtudiant = nom.getText();
 	        String prenomEtudiant = prenom.getText();
 	        String noteEtudiantStr = note.getText();
@@ -61,36 +61,35 @@ public class AjouterEtudiantController extends HomeController{
 	            return;
 	        }
 
-	        // on verifie si la note est un entier
-	        if (!isInteger(noteEtudiantStr)) {
-	            // gestion d'erreur, par exemple afficher un message à l'utilisateur
-	            displayMessage(entier);
-	            return;
-	        }
+	        // on vérifie si la note est un double
+	        try {
+	            double noteEtudiant = Double.parseDouble(noteEtudiantStr);
 
-	        int noteEtudiant = Integer.parseInt(noteEtudiantStr);
+	            // Vérifier si la note est comprise entre 0 et 20
+	            if (noteEtudiant < 0 || noteEtudiant > 20) {
+	                displayMessage(noteComprise);
+	                return;
+	            }
 
-	        // Vérifier si la note est comprise entre 0 et 20
-	        if (noteEtudiant < 0 || noteEtudiant > 20) {
-	            displayMessage(noteComprise);
-	            return;
-	        }
+	            try (Statement stat = conn.createStatement()) {
+	                String sql = "INSERT INTO Etudiant (nomEtudiant, prenomEtudiant, noteMoyenne) VALUES (?, ?, ?)";
+	                try (PreparedStatement statement = conn.prepareStatement(sql)) {
+	                    statement.setString(1, nomEtudiant);
+	                    statement.setString(2, prenomEtudiant);
+	                    statement.setDouble(3, noteEtudiant);
 
-	        try (Statement stat = conn.createStatement()) {
-	            String sql = "INSERT INTO Etudiant (nomEtudiant, prenomEtudiant, noteMoyenne) VALUES (?, ?, ?)";
-	            try (PreparedStatement statement = conn.prepareStatement(sql)) {
-	                statement.setString(1, nomEtudiant);
-	                statement.setString(2, prenomEtudiant);
-	                statement.setInt(3, noteEtudiant);
+	                    int rowsAffected = statement.executeUpdate();
 
-	                int rowsAffected = statement.executeUpdate();
-
-	                if (rowsAffected > 0) {
-	                    displayMessage(succes);
-	                } else {
-	                    displayMessage(echec);
+	                    if (rowsAffected > 0) {
+	                        displayMessage(succes);
+	                    } else {
+	                        displayMessage(echec);
+	                    }
 	                }
 	            }
+	        } catch (NumberFormatException e) {
+	            // gestion d'erreur, par exemple afficher un message à l'utilisateur
+	            displayMessage(entier);
 	        }
 	    } catch (SQLException ex) {
 	        // Gérer les erreurs

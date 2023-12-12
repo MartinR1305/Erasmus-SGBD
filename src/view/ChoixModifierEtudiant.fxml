@@ -14,8 +14,8 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <ComboBox fx:id="listeEtudiant" layoutX="179.0" layoutY="164.0" prefHeight="36.0" prefWidth="250.0" />
-      <Button fx:id="modifier" layoutX="274.0" layoutY="224.0" mnemonicParsing="false" text="Modifier" />
+      <ComboBox fx:id="listeEtudiant" layoutX="179.0" layoutY="164.0" prefHeight="36.0" prefWidth="250.0" promptText="Numéro étudiant" />
+      <Button fx:id="modifier" layoutX="274.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchToModifierEtudiant" text="Modifier" />
       <Button fx:id="retour" layoutX="525.0" layoutY="350.0" mnemonicParsing="false" onAction="#switchToEtudiant" text="Retour" />
    </children>
 </AnchorPane>
