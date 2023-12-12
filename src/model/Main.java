@@ -20,10 +20,10 @@ public class Main extends Application {
 	Statement stat = null;
 
 	public Main() throws IOException {
-//		connectToBDD();
-//		createBDD();
-//		createData();
-//		closeBDD();
+		connectToBDD();
+		createBDD();
+		createData();
+		closeBDD();
 		System.out.println("ok");
 	}
 
@@ -54,7 +54,7 @@ public class Main extends Application {
 	public void connectToBDD() {
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root", "Smo!Aoki1305");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root", "Babalou1942");
 
 			stat = conn.createStatement();
 
@@ -72,12 +72,12 @@ public class Main extends Application {
 
 			// Création des tables
 
-			String etudiant = "CREATE TABLE Etudiant (" + "numEtudiant INTEGER not NULL," + "nomEtudiant VARCHAR(255),"
+			String etudiant = "CREATE TABLE Etudiant (" + "numEtudiant INTEGER not NULL AUTO_INCREMENT," + "nomEtudiant VARCHAR(255),"
 					+ "prenomEtudiant VARCHAR(255)," + "noteMoyenne DOUBLE," + "PRIMARY KEY (numEtudiant))";
 
 			stat.executeUpdate(etudiant);
 
-			String enseignant = "CREATE TABLE Enseignant (" + "idEnseignant INTEGER not NULL,"
+			String enseignant = "CREATE TABLE Enseignant (" + "idEnseignant INTEGER not NULL AUTO_INCREMENT,"
 					+ "nomEnseignant VARCHAR(255)," + "prenomEnseignant VARCHAR(255)," + "PRIMARY KEY (idEnseignant))";
 
 			stat.executeUpdate(enseignant);
@@ -90,14 +90,14 @@ public class Main extends Application {
 
 			stat.executeUpdate(candidature);
 
-			String bourse = "CREATE TABLE Bourse (" + "idBourse INTEGER not NULL," + "destination VARCHAR(255),"
+			String bourse = "CREATE TABLE Bourse (" + "idBourse INTEGER not NULL AUTO_INCREMENT," + "destination VARCHAR(255),"
 					+ "nombrePostes INTEGER," + "responsableLocal INTEGER NOT NULL," + "candidature INTEGER NOT NULL,"
 					+ "PRIMARY KEY (idBourse)," + "FOREIGN KEY (candidature) REFERENCES Candidature(idCandidature),"
 					+ "FOREIGN KEY (responsableLocal) REFERENCES Enseignant(idEnseignant))";
 
 			stat.executeUpdate(bourse);
 
-			String enseignement = "CREATE TABLE Enseignement (" + "idEnseignement INTEGER not NULL,"
+			String enseignement = "CREATE TABLE Enseignement (" + "idEnseignement INTEGER not NULL AUTO_INCREMENT,"
 					+ "nomEnseignement VARCHAR(255)," + "nombreCredit INTEGER," + "volumeHoraire INTEGER,"
 					+ "candidature INTEGER NOT NULL,"
 					+ "FOREIGN KEY (candidature) REFERENCES Candidature(idCandidature),"
