@@ -61,5 +61,16 @@ public class ForAllControllers {
 	}
 	
 	
+	public void switchToHome(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource(".." + File.separator + "view" + File.separator + "Home.fxml"));
+		root = loader.load();
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	
 	
 }
