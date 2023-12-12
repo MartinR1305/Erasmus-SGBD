@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterEtudiantController">
    <children>
       <Label layoutX="180.0" layoutY="38.0" text="Ajouter un étudiant">
@@ -20,11 +19,36 @@
       <Label layoutX="169.0" layoutY="150.0" text="Prénom" />
       <TextField fx:id="note" layoutX="259.0" layoutY="200.0" prefHeight="25.0" prefWidth="79.0" />
       <Label layoutX="169.0" layoutY="204.0" text="Note moyenne" />
-      <Button fx:id="ajouter" layoutX="246.0" layoutY="273.0" mnemonicParsing="false" text="Ajouter">
+      <Button fx:id="ajouter" layoutX="246.0" layoutY="283.0" mnemonicParsing="false" onAction="#creerEtudiant" text="Ajouter">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
       <Button fx:id="retour" layoutX="524.0" layoutY="355.0" mnemonicParsing="false" onAction="#switchToEtudiant" text="Retour" />
+      <Label fx:id="succes" layoutX="223.0" layoutY="252.0" text="Étudiant ajouté avec succès !" textFill="#2eb90f" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="entier" layoutX="224.0" layoutY="252.0" text="La note doit être un entier." textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="noteComprise" layoutX="191.0" layoutY="252.0" text="La note doit être comprise entre 0 et 20." textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="echec" layoutX="217.0" layoutY="252.0" text="Échec de l'ajout de l'étudiant." textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="champsVides" layoutX="221.0" layoutY="252.0" text="Remplissez tous les champs" textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
