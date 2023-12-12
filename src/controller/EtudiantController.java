@@ -44,9 +44,9 @@ public class EtudiantController extends ForAllControllers {
 		stage.show();
 	}
 	
-	public void switchToModifierEtudiant(ActionEvent event) throws IOException {
+	public void switchToChoixModifierEtudiant(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource(".." + File.separator + "view" + File.separator + "ModifierEtudiant.fxml"));
+				getClass().getResource(".." + File.separator + "view" + File.separator + "ChoixModifierEtudiant.fxml"));
 		root = loader.load();
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -56,7 +56,7 @@ public class EtudiantController extends ForAllControllers {
 	
 	public void switchToSupprimerEtudiant(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource(".." + File.separator + "view" + File.separator + "SupprimerrEtudiant.fxml"));
+				getClass().getResource(".." + File.separator + "view" + File.separator + "SupprimerEtudiant.fxml"));
 		root = loader.load();
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
