@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class HomeController extends ForAllControllers{
 	
     @FXML
-    private Button switchToAjouter,switchToVisualiser;
+    private Button etudiant, bourse, enseignement, enseignant, candidature ;
     
 	private Stage stage;
 	private Scene scene;

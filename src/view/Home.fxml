@@ -12,10 +12,10 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Button fx:id="switchToAjouter" layoutX="263.0" layoutY="262.0" mnemonicParsing="false" onAction="#switchToCandidature" text="Candidature" />
-      <Button fx:id="switchToVisualiser" layoutX="316.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToEnseignement" text="Enseignement" />
-      <Button fx:id="switchToAjouter1" layoutX="215.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToEnseignant" text="Enseignant" />
-      <Button fx:id="switchToAjouter2" layoutX="128.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToEtudiant" text="Etudiant" />
-      <Button fx:id="switchToAjouter3" layoutX="437.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToBourse" text="Bourse" />
+      <Button fx:id="candidature" layoutX="263.0" layoutY="262.0" mnemonicParsing="false" onAction="#switchToCandidature" text="Candidature" />
+      <Button fx:id="enseignement" layoutX="316.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToEnseignement" text="Enseignement" />
+      <Button fx:id="enseignant" layoutX="215.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToEnseignant" text="Enseignant" />
+      <Button fx:id="etudiant" layoutX="128.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToEtudiant" text="Etudiant" />
+      <Button fx:id="bourse" layoutX="437.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToBourse" text="Bourse" />
    </children>
 </AnchorPane>
