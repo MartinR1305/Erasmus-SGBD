@@ -15,7 +15,7 @@
       <Button fx:id="ajouter" layoutX="88.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchToAjouterEtudiant" text="Ajouter un étudiant" />
       <Button fx:id="modifier" layoutX="238.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchToChoixModifierEtudiant" text="Modifier un étudiant" />
       <Button fx:id="supprimer" layoutX="397.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchToSupprimerEtudiant" text="Supprimer un étudiant" />
-      <Button fx:id="visualiser" layoutX="238.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchToVisualiserEtudiant" text="Visualiser les étudiants" />
+      <Button fx:id="visualiser" layoutX="233.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchToVisualiserEtudiant" text="Visualiser les étudiants" />
       <Button fx:id="retour" layoutX="525.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToHome" text="Retour" />
    </children>
 </AnchorPane>

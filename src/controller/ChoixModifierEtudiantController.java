@@ -10,17 +10,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
-public class ChoixModifierEtudiantController extends HomeController{
+public class ChoixModifierEtudiantController extends HomeController implements Initializable{
 
 	private Stage stage;
 	private Scene scene;
@@ -59,10 +64,47 @@ public class ChoixModifierEtudiantController extends HomeController{
 			String sql = "SELECT numEtudiant FROM Etudiant";
 			ResultSet resultSet = stat.executeQuery(sql);
 
+			ObservableList<Integer> listeEtudiants = FXCollections.observableArrayList();
+
 			while (resultSet.next()) {
 				int numEtudiant = resultSet.getInt("numEtudiant");
-				comboBoxEtudiant.getItems().add(numEtudiant);
+				listeEtudiants.add(numEtudiant);
 			}
+
+			// Set the drop-down menu
+			comboBoxEtudiant.setCellFactory(param -> new ListCell<Integer>() {
+	            @Override
+	            protected void updateItem(Integer num, boolean empty) {
+	                super.updateItem(num, empty);
+
+	                if (empty || num == null) {
+	                    setText(null);
+	                } else {
+	                    setText(num.toString());
+	                }
+	            }
+	        });
+
+	        comboBoxEtudiant.setItems(listeEtudiants);
+
+	        // We set display of level once selected
+	        comboBoxEtudiant.setConverter(new StringConverter<Integer>() {
+	            @Override
+	            public String toString(Integer num) {
+	                if (num == null) {
+	                    return null;
+	                } else {
+	                    return num.toString();
+	                }
+	            }
+
+	            @Override
+	            public Integer fromString(String string) {
+	                return null;
+	            }
+	        });
+
+			
 
 		} catch (SQLException ex) {
 			// Gérer les erreurs
@@ -71,6 +113,12 @@ public class ChoixModifierEtudiantController extends HomeController{
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
 	}
+
+
+	public void initialize(URL arg0, ResourceBundle arg1) {
+	    setComboBoxWithEtudiants(listeEtudiant);
+	}
+
 
 
 
