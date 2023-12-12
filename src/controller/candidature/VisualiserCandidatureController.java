@@ -1,5 +1,6 @@
-package controller;
+package controller.candidature;
 
+import controller.ForAllControllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
