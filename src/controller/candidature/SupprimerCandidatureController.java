@@ -29,7 +29,7 @@ public class SupprimerCandidatureController extends CandidatureController implem
     private Button non, oui, retour, supprimer;
 
     @FXML
-    private Label question;
+    private Label question, errorMsg, successMsg;
     
 	@FXML
 	private ComboBox<Integer> listeIDCandidature;
@@ -59,21 +59,42 @@ public class SupprimerCandidatureController extends CandidatureController implem
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		setComboBoxWithListID(listeIDCandidature, listIDCand);
-		
 	}
 
-    public void displayConfirmation(ActionEvent event) {
+    public void supprimerCandidature() {
+    	
+    	
+    	
+    	displayMessage(successMsg);
+    	listeIDCandidature.setValue(null);
+    	hideConfirmation();
+    }
+    
+    public void displayConfirmation() {
+		if (listeIDCandidature.getValue() != null) {
+			question.setVisible(true);
 
+			oui.setVisible(true);
+			oui.setDisable(false);
+
+			non.setVisible(true);
+			non.setDisable(false);
+		}
+
+		else {
+			displayMessage(errorMsg);
+		}
     }
 
-    public void hideConfirmation(ActionEvent event) {
+    public void hideConfirmation() {
+    	question.setVisible(false);
 
-    }
+    	oui.setVisible(false);
+    	oui.setDisable(true);
 
-    public void supprimerCandidature(ActionEvent event) {
-
+		non.setVisible(false);
+		non.setDisable(true);
     }
 
 	public void switchToCandidature(ActionEvent event) throws IOException {
@@ -85,7 +106,4 @@ public class SupprimerCandidatureController extends CandidatureController implem
 		stage.setScene(scene);
 		stage.show();
 	}
-
-
-
 }

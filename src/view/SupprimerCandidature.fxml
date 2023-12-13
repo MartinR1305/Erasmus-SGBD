@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.candidature.SupprimerCandidatureController">
    <children>
       <Button fx:id="retour" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchToCandidature" text="Retour" />
@@ -14,5 +13,7 @@
       <Button fx:id="non" layoutX="350.0" layoutY="215.0" mnemonicParsing="false" onAction="#hideConfirmation" text="NON" visible="false" />
       <Button fx:id="oui" layoutX="207.0" layoutY="215.0" mnemonicParsing="false" onAction="#supprimerCandidature" text="OUI" visible="false" />
       <Button fx:id="supprimer" layoutX="439.0" layoutY="145.0" mnemonicParsing="false" onAction="#displayConfirmation" text="Supprimer" />
+      <Label fx:id="errorMsg" layoutX="158.0" layoutY="191.0" text="Vous devez selectionner une candidature à supprimer" textFill="RED" visible="false" />
+      <Label fx:id="successMsg" layoutX="206.0" layoutY="232.0" text="La candidature a bien été supprimé" textFill="#00ff37" visible="false" />
    </children>
 </AnchorPane>
