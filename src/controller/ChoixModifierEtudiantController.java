@@ -93,7 +93,6 @@ public class ChoixModifierEtudiantController extends HomeController implements I
 
 	        comboBoxEtudiant.setItems(listeEtudiants);
 
-	        // We set display of level once selected
 	        comboBoxEtudiant.setConverter(new StringConverter<Integer>() {
 	            @Override
 	            public String toString(Integer num) {
