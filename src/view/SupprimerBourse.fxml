@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.bourse.SupprimerBourseController">
+   <children>
+      <Button fx:id="oui" layoutX="225.0" layoutY="252.0" mnemonicParsing="false" onAction="#supprimerBourse" text="OUI" visible="false" />
+      <ComboBox fx:id="listeIDBourse" layoutX="225.0" layoutY="188.0" prefWidth="150.0" />
+      <Label fx:id="question" layoutX="190.0" layoutY="221.0" text="Voulez vraiment supprimer cette bourse ?" visible="false" />
+      <Button fx:id="non" layoutX="323.0" layoutY="252.0" mnemonicParsing="false" onAction="#hideConfirmation" text="NON" visible="false" />
+      <Button fx:id="retour" layoutX="534.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToBourse" text="Retour" />
+      <Button fx:id="supprimer" layoutX="462.0" layoutY="188.0" mnemonicParsing="false" onAction="#displayConfirmation" text="Supprimer" />
+      <Label fx:id="errorMsg" layoutX="171.0" layoutY="303.0" text="Vous devez sélectionner une bourse à supprimer" textFill="RED" visible="false" />
+      <Label fx:id="successMsg" layoutX="220.0" layoutY="321.0" text="Bourse supprimée avec succès" textFill="#00ff51" visible="false" />
+   </children>
+</AnchorPane>
