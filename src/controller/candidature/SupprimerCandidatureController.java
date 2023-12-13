@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -24,54 +25,53 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class SupprimerCandidatureController extends CandidatureController implements Initializable{
-    @FXML
-    private Button non, oui, retour, supprimer;
+public class SupprimerCandidatureController extends CandidatureController implements Initializable {
+	@FXML
+	private Button non, oui, retour, supprimer;
 
-    @FXML
-    private Label question, errorMsg, successMsg;
-    
+	@FXML
+	private Label question, errorMsg, successMsg;
+
 	@FXML
 	private ComboBox<Integer> listeIDCandidature;
-    
+
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		ObservableList<Integer> listIDCand = FXCollections.observableArrayList();
-		
-		// Recherche des IDs dans la BDD
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
-			String sqlCandidature = "SELECT idCandidature FROM Candidature";
-
-			// ID Bourse
-			try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCandidature)) {
-				try (ResultSet resultSet = preparedStatement.executeQuery()) {
-					while (resultSet.next()) {
-						int idCandidature = resultSet.getInt("idCandidature");
-						listIDCand.add(idCandidature);
-					}
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		setComboBoxWithListID(listeIDCandidature, listIDCand);
+		obtenirListIDEtActualiserComboBox();
 	}
 
-    public void supprimerCandidature() {
-    	
-    	
-    	
-    	displayMessage(successMsg);
-    	listeIDCandidature.setValue(null);
-    	hideConfirmation();
-    }
-    
-    public void displayConfirmation() {
+	public void supprimerCandidature() throws SQLException {
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
+				"Smo!Aoki1305")) {
+			int idCandidatureToSuppr = listeIDCandidature.getValue();
+			
+			try (Statement stat = connection.createStatement()) {
+				String sql = "DELETE FROM Candidature WHERE idCandidature = ?";
+				try (PreparedStatement statement = connection.prepareStatement(sql)) {
+					statement.setInt(1, idCandidatureToSuppr);
+					int rowsAffected = statement.executeUpdate();
+
+					if (rowsAffected > 0) {
+						System.out.println("Suppression réussie.");
+						displayMessage(successMsg);
+						listeIDCandidature.setValue(null);
+						hideConfirmation();
+						obtenirListIDEtActualiserComboBox();
+					} else {
+						System.out.println("Aucune candidature trouvée avec l'ID spécifié.");
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void displayConfirmation() {
 		if (listeIDCandidature.getValue() != null) {
 			question.setVisible(true);
 
@@ -85,17 +85,39 @@ public class SupprimerCandidatureController extends CandidatureController implem
 		else {
 			displayMessage(errorMsg);
 		}
-    }
+	}
 
-    public void hideConfirmation() {
-    	question.setVisible(false);
+	public void hideConfirmation() {
+		question.setVisible(false);
 
-    	oui.setVisible(false);
-    	oui.setDisable(true);
+		oui.setVisible(false);
+		oui.setDisable(true);
 
 		non.setVisible(false);
 		non.setDisable(true);
-    }
+	}
+	
+	public void obtenirListIDEtActualiserComboBox() {
+		ObservableList<Integer> listIDCand = FXCollections.observableArrayList();
+
+		// Recherche des IDs dans la BDD
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
+				"Smo!Aoki1305")) {
+			String sqlCandidature = "SELECT idCandidature FROM Candidature";
+
+			try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCandidature)) {
+				try (ResultSet resultSet = preparedStatement.executeQuery()) {
+					while (resultSet.next()) {
+						int idCandidature = resultSet.getInt("idCandidature");
+						listIDCand.add(idCandidature);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		setComboBoxWithListID(listeIDCandidature, listIDCand);
+	}
 
 	public void switchToCandidature(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(
