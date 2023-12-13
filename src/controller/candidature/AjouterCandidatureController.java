@@ -122,90 +122,93 @@ public class AjouterCandidatureController extends ForAllControllers implements I
 			// Cas d'erreur
 			if ((bourse1.getValue() == null && bourse2.getValue() == null) || etudiant.getValue() == null
 					|| enseignant.getValue() == null || enseignement1.getValue() == null
-					|| enseignement2.getValue() == null || enseignement3.getValue() == null
-					|| !isInteger(note1.getText()) || !isInteger(note2.getText()) 
-					|| bourse1.getValue() == bourse2.getValue()
+					|| enseignement2.getValue() == null || enseignement3.getValue() == null || note1.getText() == null
+					|| note2.getText() == null || bourse1.getValue() == bourse2.getValue()
 					|| enseignement1.getValue() == enseignement2.getValue()
 					|| enseignement1.getValue() == enseignement3.getValue()
 					|| enseignement2.getValue() == enseignement3.getValue()) {
 				displayMessage(msgError);
 
 			} else {
-				int numEtudiant = etudiant.getValue();
-				ObservableList<Integer> listIDEtudiantCandidature = FXCollections.observableArrayList();
-				String sqlEtudiantCandidature = "SELECT idEtudiant FROM Candidature";
+				if (!isInteger(note1.getText()) || !isInteger(note1.getText())) {
+					displayMessage(msgError);
+				} else {
+					int numEtudiant = etudiant.getValue();
+					ObservableList<Integer> listIDEtudiantCandidature = FXCollections.observableArrayList();
+					String sqlEtudiantCandidature = "SELECT idEtudiant FROM Candidature";
 
-				// ID Bourse
-				try (PreparedStatement preparedStatement = connection.prepareStatement(sqlEtudiantCandidature)) {
-					try (ResultSet resultSet = preparedStatement.executeQuery()) {
-						while (resultSet.next()) {
-							int numEtudiantCandidature = resultSet.getInt("idEtudiant");
-							listIDEtudiantCandidature.add(numEtudiantCandidature);
-						}
-					}
-				}
-
-				// On vérifie que l'étudiant n'a pas déjà fait une candidature
-				if (!listIDEtudiantCandidature.contains(numEtudiant)) {
-
-					int idBourse1 = bourse1.getValue();
-					int idBourse2 = bourse2.getValue();
-					int idEnseignant = enseignant.getValue();
-					int idEnseignement1 = enseignement1.getValue();
-					int idEnseignement2 = enseignement2.getValue();
-					int idEnseignement3 = enseignement3.getValue();
-					int valueNote1 = Integer.valueOf(note1.getText());
-					int valueNote2 = Integer.valueOf(note2.getText());
-					int noteEtudiant = 0;
-
-					String sqlNoteEtudiant = "SELECT noteMoyenne FROM Etudiant WHERE numEtudiant = numEtudiant ";
-					try (PreparedStatement preparedStatement = connection.prepareStatement(sqlNoteEtudiant)) {
+					// ID Bourse
+					try (PreparedStatement preparedStatement = connection.prepareStatement(sqlEtudiantCandidature)) {
 						try (ResultSet resultSet = preparedStatement.executeQuery()) {
 							while (resultSet.next()) {
-								noteEtudiant = resultSet.getInt("noteMoyenne");
+								int numEtudiantCandidature = resultSet.getInt("idEtudiant");
+								listIDEtudiantCandidature.add(numEtudiantCandidature);
 							}
 						}
 					}
 
-					try (Statement stat = connection.createStatement()) {
-						String sql = "INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2, idEnseignement1, idEnseignement2, idEnseignement3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-						try (PreparedStatement statement = connection.prepareStatement(sql)) {
-							int score = ((noteEtudiant*5) + valueNote1 + valueNote2) / 3;
-							
-					        statement.setInt(1, score);
-					        statement.setInt(2, valueNote1);
-					        statement.setInt(3, valueNote2);
-					        statement.setInt(4, numEtudiant);
-					        statement.setInt(5, idEnseignant);
-					        statement.setInt(6, idBourse1);
-					        statement.setInt(7, idBourse2);
-					        statement.setInt(8, idEnseignement1);
-					        statement.setInt(9, idEnseignement2);
-					        statement.setInt(10, idEnseignement3);
+					// On vérifie que l'étudiant n'a pas déjà fait une candidature
+					if (!listIDEtudiantCandidature.contains(numEtudiant)) {
 
-					        int rowsAffected = statement.executeUpdate();
-					        if (rowsAffected > 0) {
-					            System.out.println("Insertion réussie.");
-					        } else {
-					            System.out.println("Échec de l'insertion.");
-					        }
+						int idBourse1 = bourse1.getValue();
+						int idBourse2 = bourse2.getValue();
+						int idEnseignant = enseignant.getValue();
+						int idEnseignement1 = enseignement1.getValue();
+						int idEnseignement2 = enseignement2.getValue();
+						int idEnseignement3 = enseignement3.getValue();
+						int valueNote1 = Integer.valueOf(note1.getText());
+						int valueNote2 = Integer.valueOf(note2.getText());
+						int noteEtudiant = 0;
+
+						String sqlNoteEtudiant = "SELECT noteMoyenne FROM Etudiant WHERE numEtudiant = numEtudiant ";
+						try (PreparedStatement preparedStatement = connection.prepareStatement(sqlNoteEtudiant)) {
+							try (ResultSet resultSet = preparedStatement.executeQuery()) {
+								while (resultSet.next()) {
+									noteEtudiant = resultSet.getInt("noteMoyenne");
+								}
+							}
 						}
-					} catch (SQLException e) {
-						e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
-					}
 
-					bourse1.setValue(null);
-					bourse2.setValue(null);
-					etudiant.setValue(null);
-					enseignant.setValue(null);
-					enseignement1.setValue(null);
-					enseignement2.setValue(null);
-					enseignement3.setValue(null);
-					note1.setText(null);
-					note2.setText(null);
-					displayMessage(msgSuccess);
-				} else {
-					displayMessage(msgErrorEtudiant);
+						try (Statement stat = connection.createStatement()) {
+							String sql = "INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2, idEnseignement1, idEnseignement2, idEnseignement3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+							try (PreparedStatement statement = connection.prepareStatement(sql)) {
+								int score = ((noteEtudiant * 5) + valueNote1 + valueNote2) / 3;
+
+								statement.setInt(1, score);
+								statement.setInt(2, valueNote1);
+								statement.setInt(3, valueNote2);
+								statement.setInt(4, numEtudiant);
+								statement.setInt(5, idEnseignant);
+								statement.setInt(6, idBourse1);
+								statement.setInt(7, idBourse2);
+								statement.setInt(8, idEnseignement1);
+								statement.setInt(9, idEnseignement2);
+								statement.setInt(10, idEnseignement3);
+
+								int rowsAffected = statement.executeUpdate();
+								if (rowsAffected > 0) {
+									System.out.println("Insertion réussie.");
+								} else {
+									System.out.println("Échec de l'insertion.");
+								}
+							}
+						} catch (SQLException e) {
+							e.printStackTrace(); // Gérez les exceptions de manière appropriée dans votre application
+						}
+
+						bourse1.setValue(null);
+						bourse2.setValue(null);
+						etudiant.setValue(null);
+						enseignant.setValue(null);
+						enseignement1.setValue(null);
+						enseignement2.setValue(null);
+						enseignement3.setValue(null);
+						note1.setText(null);
+						note2.setText(null);
+						displayMessage(msgSuccess);
+					} else {
+						displayMessage(msgErrorEtudiant);
+					}
 				}
 			}
 		} catch (SQLException e) {
