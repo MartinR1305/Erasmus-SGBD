@@ -140,8 +140,6 @@ public class ModifierEtudiantController extends HomeController{
 	}
 
 
-
-
 	public void switchToChoixModifierEtudiant(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(
 				getClass().getResource(".." + File.separator + "view" + File.separator + "ChoixModifierEtudiant.fxml"));

@@ -138,7 +138,6 @@ public class SupprimerEtudiantController extends HomeController implements Initi
 
 	public void displayConfirmation() {
 
-		// We check if a player has been selected in the box
 		if (listeEtudiant.getValue() != null) {
 			question.setVisible(true);
 

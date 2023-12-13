@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.enseignant.AjouterEnseignantController">
+   <children>
+      <Label layoutX="160.0" layoutY="52.0" text="Ajouter un enseignant">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nom" layoutX="225.0" layoutY="123.0" />
+      <TextField fx:id="prenom" layoutX="225.0" layoutY="160.0" />
+      <Label layoutX="165.0" layoutY="127.0" text="Nom" />
+      <Label layoutX="165.0" layoutY="164.0" text="Prénom" />
+      <Button fx:id="ajouter" layoutX="245.0" layoutY="259.0" mnemonicParsing="false" onAction="#creerEnseignant" text="Ajouter">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="retour" layoutX="534.0" layoutY="365.0" mnemonicParsing="false" onAction="#switchToEnseignant" text="Retour" />
+      <Label fx:id="succes" layoutX="212.0" layoutY="215.0" text="Enseignant ajouté avec succès !" textFill="#2eb90f" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="echec" layoutX="206.0" layoutY="215.0" text="Échec de l'ajout de l'enseignant." textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="champsVides" layoutX="218.0" layoutY="215.0" text="Remplissez tous les champs" textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.enseignant.EnseignantController">
+   <children>
+      <Label layoutX="218.0" layoutY="49.0" text="Enseignant">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Button fx:id="ajouter" layoutX="80.0" layoutY="180.0" mnemonicParsing="false" onAction="#switchToAjouterEnseignant" text="Ajouter un enseignant" />
+      <Button fx:id="modifier" layoutX="230.0" layoutY="180.0" mnemonicParsing="false" onAction="#switchToChoixModifierEnseignant" text="Modifier un enseignant" />
+      <Button fx:id="supprimer" layoutX="389.0" layoutY="180.0" mnemonicParsing="false" onAction="#switchToSupprimerEnseignant" text="Supprimer un enseignant" />
+      <Button fx:id="visualiser" layoutX="225.0" layoutY="252.0" mnemonicParsing="false" onAction="#switchToVisualiserEnseignant" text="Visualiser les enseignants" />
+      <Button fx:id="retour" layoutX="535.0" layoutY="363.0" mnemonicParsing="false" onAction="#switchToHome" text="Retour" />
+   </children>
 </AnchorPane>
-
