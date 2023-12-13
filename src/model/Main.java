@@ -21,8 +21,8 @@ public class Main extends Application {
 
 	public Main() throws IOException {
 		connectToBDD();
-//		createBDD();
-//		createData();
+		createBDD();
+		createData();
 		closeBDD();
 		System.out.println("ok");
 	}
@@ -82,20 +82,28 @@ public class Main extends Application {
 
 			stat.executeUpdate(enseignant);
 
-			String candidature = "CREATE TABLE Candidature (" + "idCandidature INTEGER not NULL AUTO_INCREMENT,"
-					+ "score DOUBLE," + "noteResponsableErasmus DOUBLE," + "noteResponsableLocal DOUBLE,"
-					+ "etudiant INTEGER NOT NULL," + "responsableErasmus INTEGER NOT NULL,"
-					+ "PRIMARY KEY (idCandidature)," + "FOREIGN KEY (etudiant) REFERENCES Etudiant(numEtudiant),"
-					+ "FOREIGN KEY (responsableErasmus) REFERENCES Enseignant(idEnseignant))";
-
-			stat.executeUpdate(candidature);
-
 			String bourse = "CREATE TABLE Bourse (" + "idBourse INTEGER not NULL AUTO_INCREMENT," + "destination VARCHAR(255),"
-					+ "nombrePostes INTEGER," + "responsableLocal INTEGER NOT NULL," + "candidature INTEGER NOT NULL,"
-					+ "PRIMARY KEY (idBourse)," + "FOREIGN KEY (candidature) REFERENCES Candidature(idCandidature),"
+					+ "nombrePostes INTEGER," + "responsableLocal INTEGER NOT NULL,"
+					+ "PRIMARY KEY (idBourse),"
 					+ "FOREIGN KEY (responsableLocal) REFERENCES Enseignant(idEnseignant))";
 
 			stat.executeUpdate(bourse);
+
+			String candidature = "CREATE TABLE Candidature (" +
+					"idCandidature INT PRIMARY KEY AUTO_INCREMENT," +
+					"score INT," +
+					"noteResponsableErasmus INT," +
+					"noteResponsableLocal INT," +
+					"idEtudiant INT," +
+					"responsableErasmus INT," +
+					"idBourse1 INT," +
+					"idBourse2 INT," +
+					"FOREIGN KEY (idEtudiant) REFERENCES Etudiant(numEtudiant)," +
+					"FOREIGN KEY (responsableErasmus) REFERENCES Enseignant(idEnseignant)," +
+					"FOREIGN KEY (idBourse1) REFERENCES Bourse(idBourse)," +
+					"FOREIGN KEY (idBourse2) REFERENCES Bourse(idBourse));";
+
+			stat.executeUpdate(candidature);
 
 			String enseignement = "CREATE TABLE Enseignement (" + "idEnseignement INTEGER not NULL AUTO_INCREMENT,"
 					+ "nomEnseignement VARCHAR(255)," + "nombreCredit INTEGER," + "volumeHoraire INTEGER,"
@@ -134,25 +142,26 @@ public class Main extends Application {
 			stat.executeUpdate(
 					"INSERT INTO Enseignant (idEnseignant, nomEnseignant, prenomEnseignant) VALUES (4, 'Roronoa', 'Zoro')");
 
-			// Données pour la table Candidature
-			stat.executeUpdate(
-					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, etudiant, responsableErasmus) VALUES (89.0, 90.0, 88.0, 1, 1)");
-			stat.executeUpdate(
-					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, etudiant, responsableErasmus) VALUES (85.0, 92.0, 87.0, 2, 2)");
-			stat.executeUpdate(
-					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, etudiant, responsableErasmus) VALUES (78.0, 85.0, 80.0, 3, 3)");
-			stat.executeUpdate(
-					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, etudiant, responsableErasmus) VALUES (92.0, 88.0, 95.0, 4, 4)");
-
 			// Données pour la table Bourse
 			stat.executeUpdate(
-					"INSERT INTO Bourse (idBourse, destination, nombrePostes, responsableLocal, candidature) VALUES (1, 'Canada', 5, 1, 1)");
+					"INSERT INTO Bourse (idBourse, destination, nombrePostes, responsableLocal) VALUES (1, 'Canada', 5, 1)");
 			stat.executeUpdate(
-					"INSERT INTO Bourse (idBourse, destination, nombrePostes, responsableLocal, candidature) VALUES (2, 'Maroc', 3, 2, 1)");
+					"INSERT INTO Bourse (idBourse, destination, nombrePostes, responsableLocal) VALUES (2, 'Maroc', 3, 2)");
 			stat.executeUpdate(
-					"INSERT INTO Bourse (idBourse, destination, nombrePostes, responsableLocal, candidature) VALUES (3, 'Konoha', 6, 3, 3)");
+					"INSERT INTO Bourse (idBourse, destination, nombrePostes, responsableLocal) VALUES (3, 'Konoha', 6, 3)");
 			stat.executeUpdate(
-					"INSERT INTO Bourse (idBourse, destination, nombrePostes, responsableLocal, candidature) VALUES (4, 'Marineford', 3, 4, 4)");
+					"INSERT INTO Bourse (idBourse, destination, nombrePostes, responsableLocal) VALUES (4, 'Marineford', 3, 4)");
+
+			// Données pour la table Candidature
+			stat.executeUpdate(
+					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2) VALUES (89.0, 90.0, 88.0, 1, 1, 1, NULL)");
+			stat.executeUpdate(
+					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2) VALUES (85.0, 92.0, 87.0, 2, 2, 2, 3)");
+			stat.executeUpdate(
+					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2) VALUES (78.0, 85.0, 80.0, 3, 3, 1, 4)");
+			stat.executeUpdate(
+					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2) VALUES (92.0, 88.0, 95.0, 4, 4, 2, 3)");
+
 
 			// Données pour la table Enseignement
 			stat.executeUpdate(
