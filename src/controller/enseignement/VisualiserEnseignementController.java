@@ -3,7 +3,6 @@ package controller.enseignement;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import model.DatabaseConnector;
 
 public class VisualiserEnseignementController extends HomeController {
 
@@ -50,7 +50,9 @@ public class VisualiserEnseignementController extends HomeController {
 	
 	
 	public void visualiserEnseignements() {
-	    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root", "Babalou1942")) {
+	    try  {
+	    	DatabaseConnector.connectToBDD();
+			conn = DatabaseConnector.getConnection();
 	        String sql = "SELECT nomEnseignement, nombreCredit, volumeHoraire FROM Enseignement";
 	        try (PreparedStatement statement = conn.prepareStatement(sql)) {
 	            ResultSet resultSet = statement.executeQuery();

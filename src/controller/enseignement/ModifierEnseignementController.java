@@ -3,7 +3,6 @@ package controller.enseignement;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.DatabaseConnector;
 
 public class ModifierEnseignementController extends HomeController{
 
@@ -74,7 +74,8 @@ public class ModifierEnseignementController extends HomeController{
 		idEnseignement = enseignementNumber;
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root", "Babalou1942");
+			DatabaseConnector.connectToBDD();
+			conn = DatabaseConnector.getConnection();
 			stat = conn.createStatement();
 
 			String sql = "SELECT nomEnseignement, nombreCredit, volumeHoraire FROM Enseignement WHERE idEnseignement = " + idEnseignement;
@@ -134,7 +135,10 @@ public class ModifierEnseignementController extends HomeController{
 			return;
 		}
 
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root", "Babalou1942")) {
+		try  {
+			DatabaseConnector.connectToBDD();
+			Connection conn = DatabaseConnector.getConnection();
+			
 			String sql = "UPDATE Enseignement SET nomEnseignement = ?, volumeHoraire = ?, nombreCredit = ? WHERE idEnseignement = ?";
 			try (PreparedStatement statement = conn.prepareStatement(sql)) {
 				statement.setString(1, newNom);
