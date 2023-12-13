@@ -1,4 +1,4 @@
-package controller;
+package controller.etudiant;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import controller.HomeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,7 +47,7 @@ public class ChoixModifierEtudiantController extends HomeController implements I
 
 	public void switchToModifierEtudiant(ActionEvent event) throws IOException {
 	    FXMLLoader loader = new FXMLLoader(
-	            getClass().getResource(".." + File.separator + "view" + File.separator + "ModifierEtudiant.fxml"));
+	            getClass().getResource(".." + File.separator + ".." + File.separator + "view" + File.separator + "ModifierEtudiant.fxml"));
 	    root = loader.load();
 	    ModifierEtudiantController modifierEtudiantController = loader.getController();
 
@@ -117,6 +118,16 @@ public class ChoixModifierEtudiantController extends HomeController implements I
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
+	}
+	
+	public void switchToEtudiant(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource(".." + File.separator + ".." + File.separator + "view" + File.separator + "Etudiant.fxml"));
+		root = loader.load();
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.enseignement.AjouterEnseignementController">
+   <children>
+      <Label layoutX="143.0" layoutY="47.0" text="Ajouter un enseignement">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nom" layoutX="255.0" layoutY="119.0" />
+      <TextField fx:id="credit" layoutX="255.0" layoutY="156.0" prefHeight="25.0" prefWidth="82.0" />
+      <Label layoutX="112.0" layoutY="123.0" text="Nom de l'enseignement" />
+      <Label layoutX="112.0" layoutY="160.0" text="Nombre de crédit" />
+      <Button fx:id="ajouter" layoutX="245.0" layoutY="296.0" mnemonicParsing="false" onAction="#creerEnseignement" text="Ajouter">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="retour" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchToEnseignement" text="Retour" />
+      <Label fx:id="succes" layoutX="200.0" layoutY="247.0" text="Enseignement ajouté avec succès !" textFill="#2eb90f" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="echec" layoutX="198.0" layoutY="247.0" text="Échec de l'ajout de l'enseignement." textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="champsVides" layoutX="218.0" layoutY="247.0" text="Remplissez tous les champs" textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="volume" layoutX="255.0" layoutY="193.0" prefHeight="25.0" prefWidth="82.0" />
+      <Label layoutX="112.0" layoutY="197.0" text="Volume horaire" />
+      <Label fx:id="creditNegatif" layoutX="172.0" layoutY="249.0" text="Le nombre de crédit ne peut pas être négatif" textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="volumeNegatif" layoutX="178.0" layoutY="249.0" text="Le volume horaire ne peut pas être négatif" textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="creditEntier" layoutX="188.0" layoutY="247.0" text="Le nombre de crédit doit etre un entier" textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="volumeEntier" layoutX="196.0" layoutY="249.0" text="Le volume horaire doit etre un entier" textFill="#ff0606" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
