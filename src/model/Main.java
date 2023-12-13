@@ -89,6 +89,12 @@ public class Main extends Application {
 
 			stat.executeUpdate(bourse);
 
+			String enseignement = "CREATE TABLE Enseignement (" + "idEnseignement INTEGER not NULL AUTO_INCREMENT,"
+					+ "nomEnseignement VARCHAR(255)," + "nombreCredit INTEGER," + "volumeHoraire INTEGER,"
+					+ "PRIMARY KEY (idEnseignement))";
+
+			stat.executeUpdate(enseignement);
+
 			String candidature = "CREATE TABLE Candidature (" +
 					"idCandidature INT PRIMARY KEY AUTO_INCREMENT," +
 					"score INT," +
@@ -98,20 +104,20 @@ public class Main extends Application {
 					"responsableErasmus INT," +
 					"idBourse1 INT," +
 					"idBourse2 INT," +
+					"idEnseignement1 INT," +
+					"idEnseignement2 INT," +
+					"idEnseignement3 INT," +
 					"FOREIGN KEY (idEtudiant) REFERENCES Etudiant(numEtudiant)," +
 					"FOREIGN KEY (responsableErasmus) REFERENCES Enseignant(idEnseignant)," +
+					"FOREIGN KEY (idEnseignement1) REFERENCES Enseignement(idEnseignement)," +
+					"FOREIGN KEY (idEnseignement2) REFERENCES Enseignement(idEnseignement)," +
+					"FOREIGN KEY (idEnseignement3) REFERENCES Enseignement(idEnseignement)," +
 					"FOREIGN KEY (idBourse1) REFERENCES Bourse(idBourse)," +
 					"FOREIGN KEY (idBourse2) REFERENCES Bourse(idBourse));";
 
 			stat.executeUpdate(candidature);
 
-			String enseignement = "CREATE TABLE Enseignement (" + "idEnseignement INTEGER not NULL AUTO_INCREMENT,"
-					+ "nomEnseignement VARCHAR(255)," + "nombreCredit INTEGER," + "volumeHoraire INTEGER,"
-					+ "candidature INTEGER NOT NULL,"
-					+ "FOREIGN KEY (candidature) REFERENCES Candidature(idCandidature),"
-					+ "PRIMARY KEY (idEnseignement))";
 
-			stat.executeUpdate(enseignement);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -152,26 +158,28 @@ public class Main extends Application {
 			stat.executeUpdate(
 					"INSERT INTO Bourse (idBourse, destination, nombrePostes, responsableLocal) VALUES (4, 'Marineford', 3, 4)");
 
-			// Données pour la table Candidature
-			stat.executeUpdate(
-					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2) VALUES (89.0, 90.0, 88.0, 1, 1, 1, NULL)");
-			stat.executeUpdate(
-					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2) VALUES (85.0, 92.0, 87.0, 2, 2, 2, 3)");
-			stat.executeUpdate(
-					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2) VALUES (78.0, 85.0, 80.0, 3, 3, 1, 4)");
-			stat.executeUpdate(
-					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2) VALUES (92.0, 88.0, 95.0, 4, 4, 2, 3)");
-
-
 			// Données pour la table Enseignement
 			stat.executeUpdate(
-					"INSERT INTO Enseignement (idEnseignement, nomEnseignement, nombreCredit, volumeHoraire, candidature) VALUES (1, 'Ninjutsu', 5, 60, 1)");
+					"INSERT INTO Enseignement (idEnseignement, nomEnseignement, nombreCredit, volumeHoraire) VALUES (1, 'Ninjutsu', 5, 60)");
 			stat.executeUpdate(
-					"INSERT INTO Enseignement (idEnseignement, nomEnseignement, nombreCredit, volumeHoraire, candidature) VALUES (2, 'Haki', 4, 50, 2)");
+					"INSERT INTO Enseignement (idEnseignement, nomEnseignement, nombreCredit, volumeHoraire) VALUES (2, 'Haki', 4, 50)");
 			stat.executeUpdate(
-					"INSERT INTO Enseignement (idEnseignement, nomEnseignement, nombreCredit, volumeHoraire, candidature) VALUES (3, 'Senjutsu', 4, 50, 3)");
+					"INSERT INTO Enseignement (idEnseignement, nomEnseignement, nombreCredit, volumeHoraire) VALUES (3, 'Senjutsu', 4, 50)");
 			stat.executeUpdate(
-					"INSERT INTO Enseignement (idEnseignement, nomEnseignement, nombreCredit, volumeHoraire, candidature) VALUES (4, 'Maitrise des Sabres', 4, 50, 4)");
+					"INSERT INTO Enseignement (idEnseignement, nomEnseignement, nombreCredit, volumeHoraire) VALUES (4, 'Maitrise des Sabres', 4, 50)");
+
+
+			// Données pour la table Candidature
+			stat.executeUpdate(
+					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2, idEnseignement1, idEnseignement2, idEnseignement3) VALUES (89.0, 90.0, 88.0, 1, 1, 1, NULL, 1, 2, 3)");
+			stat.executeUpdate(
+					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2, idEnseignement1, idEnseignement2, idEnseignement3 ) VALUES (85.0, 92.0, 87.0, 2, 2, 2, 3, 2, 3, 4)");
+			stat.executeUpdate(
+					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2, idEnseignement1, idEnseignement2, idEnseignement3 ) VALUES (78.0, 85.0, 80.0, 3, 3, 1, 4, 1, 3, 4)");
+			stat.executeUpdate(
+					"INSERT INTO Candidature (score, noteResponsableErasmus, noteResponsableLocal, idEtudiant, responsableErasmus, idBourse1, idBourse2, idEnseignement1, idEnseignement2, idEnseignement3 ) VALUES (92.0, 88.0, 95.0, 4, 4, 2, 3, 2, 3, 4)");
+
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
