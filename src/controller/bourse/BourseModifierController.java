@@ -3,7 +3,6 @@ package controller.bourse;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.DatabaseConnector;
 
 public class BourseModifierController extends HomeController {
 
@@ -48,8 +48,10 @@ public class BourseModifierController extends HomeController {
 		labelIDBourse.setText("ID Bourse : " + idBourse);
 		ObservableList<Integer> listIDEnseignant = FXCollections.observableArrayList();
 
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+		try {
+			DatabaseConnector.connectToBDD();
+			Connection connection = DatabaseConnector.getConnection();
+			
 			String sqlEnseignant = "SELECT idEnseignant FROM Enseignant";
 
 			// ID Enseignant
@@ -98,8 +100,9 @@ public class BourseModifierController extends HomeController {
 				displayMessage(errorMsg);
 			} else {
 
-				try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-						"Smo!Aoki1305")) {
+				try {
+					DatabaseConnector.connectToBDD();
+					Connection connection = DatabaseConnector.getConnection();
 					String sql = "UPDATE Bourse SET destination = ?, nombrePostes = ?, responsableLocal = ? WHERE idBourse = ?";
 
 					try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -121,6 +124,8 @@ public class BourseModifierController extends HomeController {
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
+				}finally {
+					DatabaseConnector.closeBDD();
 				}
 			}
 		}

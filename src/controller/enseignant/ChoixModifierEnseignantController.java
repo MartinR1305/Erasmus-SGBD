@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import model.DatabaseConnector;
 
 public class ChoixModifierEnseignantController extends HomeController  implements Initializable{
 	
@@ -63,7 +63,10 @@ public class ChoixModifierEnseignantController extends HomeController  implement
 	
 	public void setComboBoxWithEnseignants(ComboBox<Integer> comboBoxEnseignant) {
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root", "Babalou1942");
+			
+			DatabaseConnector.connectToBDD();
+			conn = DatabaseConnector.getConnection();
+
 			stat = conn.createStatement();
 
 			String sql = "SELECT idEnseignant FROM Enseignant";

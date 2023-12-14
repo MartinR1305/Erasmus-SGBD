@@ -10,9 +10,14 @@ public class DatabaseConnector {
 	private static Connection conn = null;
 	private static Statement stat = null;
 	
+	// Constantes pour les informations de connexion
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/erasmus";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "Babalou1942";
+	
 	public static void connectToBDD() {
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root", "Babalou1942");
+            conn = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
 			stat = conn.createStatement();
 		} catch (SQLException ex) {
 			// Gérer les erreurs

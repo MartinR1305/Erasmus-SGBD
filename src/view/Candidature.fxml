@@ -13,8 +13,8 @@
          </font>
       </Label>
       <Button fx:id="retour" layoutX="534.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToHome" text="Retour" />
-      <Button fx:id="ajouter" layoutX="152.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchToAjouter" text="Ajouter" />
-      <Button fx:id="visualiser" layoutX="266.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchToChoixVisualiser" text="Visualiser" />
-      <Button fx:id="supprimer" layoutX="383.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchToSupprimer" text="Supprimer" />
+      <Button fx:id="ajouter" layoutX="218.0" layoutY="147.0" mnemonicParsing="false" onAction="#switchToAjouter" prefHeight="43.0" prefWidth="165.0" text="Ajouter une candidature" />
+      <Button fx:id="visualiser" layoutX="218.0" layoutY="265.0" mnemonicParsing="false" onAction="#switchToChoixVisualiser" prefHeight="43.0" prefWidth="165.0" text="Visualiser une candidature" />
+      <Button fx:id="supprimer" layoutX="218.0" layoutY="207.0" mnemonicParsing="false" onAction="#switchToSupprimer" prefHeight="43.0" prefWidth="165.0" text="Supprimer une candidature" />
    </children>
 </AnchorPane>

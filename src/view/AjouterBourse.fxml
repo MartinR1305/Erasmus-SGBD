@@ -5,19 +5,24 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.bourse.AjouterBourseController">
    <children>
-      <TextField fx:id="destination" layoutX="226.0" layoutY="108.0" />
-      <TextField fx:id="nbPostesDispo" layoutX="226.0" layoutY="167.0" />
-      <ComboBox fx:id="listeEnseignant" layoutX="226.0" layoutY="227.0" prefWidth="150.0" />
+      <TextField fx:id="destination" layoutX="230.0" layoutY="107.0" />
+      <TextField fx:id="nbPostesDispo" layoutX="230.0" layoutY="166.0" />
+      <ComboBox fx:id="listeEnseignant" layoutX="230.0" layoutY="226.0" prefHeight="25.0" prefWidth="149.0" />
       <Button fx:id="retour" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchToBourse" text="Retour" />
-      <Label layoutX="143.0" layoutY="112.0" text="Destination :" />
-      <Label layoutX="48.0" layoutY="171.0" text="Nombre  de postes disponible :" />
-      <Label layoutX="44.0" layoutY="231.0" text="Enseignant Responsable Local :" />
-      <Button fx:id="ajouterBourse" layoutX="272.0" layoutY="273.0" mnemonicParsing="false" onAction="#ajouterBourse" text="Ajouter" />
-      <Label fx:id="errorMsg" layoutX="156.0" layoutY="317.0" text="Vous devez remplir correctement les champs ci-dessus" textFill="RED" visible="false" />
-      <Label fx:id="successMsg" layoutX="226.0" layoutY="335.0" text="Bourse ajoutée avec succès " textFill="#00ff3c" visible="false" />
+      <Label layoutX="147.0" layoutY="111.0" text="Destination :" />
+      <Label layoutX="52.0" layoutY="170.0" text="Nombre  de postes disponible :" />
+      <Label layoutX="48.0" layoutY="230.0" text="Enseignant Responsable Local :" />
+      <Button fx:id="ajouterBourse" layoutX="259.0" layoutY="270.0" mnemonicParsing="false" onAction="#ajouterBourse" prefHeight="55.0" prefWidth="87.0" text="Ajouter" />
+      <Label fx:id="errorMsg" layoutX="162.0" layoutY="335.0" text="Vous devez remplir correctement les champs ci-dessus" textFill="RED" visible="false" />
+      <Label fx:id="successMsg" layoutX="232.0" layoutY="353.0" text="Bourse ajoutée avec succès " textFill="#00ff3c" visible="false" />
+      <Label layoutX="164.0" layoutY="37.0" text="Ajouter une bourse">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

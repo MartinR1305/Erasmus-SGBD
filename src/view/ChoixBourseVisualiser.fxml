@@ -4,13 +4,18 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.bourse.ChoixBourseVisualiserController">
    <children>
       <Button fx:id="retour" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchToBourse" text="Retour" />
-      <Button fx:id="visualiser" layoutX="274.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchToVisualiser" text="Voir" />
-      <ComboBox fx:id="listeIDBourse" layoutX="217.0" layoutY="200.0" prefWidth="150.0" />
-      <Label fx:id="errorMsg" layoutX="204.0" layoutY="236.0" text="Veuillez sélectionner une bourse " textFill="RED" visible="false" />
+      <Button fx:id="visualiser" layoutX="261.0" layoutY="235.0" mnemonicParsing="false" onAction="#switchToVisualiser" prefHeight="53.0" prefWidth="74.0" text="Voir" />
+      <ComboBox fx:id="listeIDBourse" layoutX="194.0" layoutY="150.0" prefHeight="35.0" prefWidth="212.0" promptText="Bourse" />
+      <Label fx:id="errorMsg" layoutX="208.0" layoutY="210.0" text="Veuillez sélectionner une bourse " textFill="RED" visible="false" />
+      <Label layoutX="85.0" layoutY="56.0" text="Veuillez séléctionner la bourse à visualiser :">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

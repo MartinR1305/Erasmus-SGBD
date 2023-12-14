@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +25,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.DatabaseConnector;
 
 public class AjouterCandidatureController extends ForAllControllers implements Initializable {
 
@@ -54,8 +54,10 @@ public class AjouterCandidatureController extends ForAllControllers implements I
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		// Recherche des IDs dans la BDD
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+		try {
+			DatabaseConnector.connectToBDD();
+			Connection connection = DatabaseConnector.getConnection();
+			
 			String sqlEtudiant = "SELECT numEtudiant FROM Etudiant";
 			String sqlBourse = "SELECT idBourse FROM Bourse";
 			String sqlEnseignant = "SELECT idEnseignant FROM Enseignant";
@@ -116,8 +118,9 @@ public class AjouterCandidatureController extends ForAllControllers implements I
 	}
 
 	public void ajouterCandidature() {
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+		try {
+			DatabaseConnector.connectToBDD();
+			Connection connection = DatabaseConnector.getConnection();
 
 			// Cas d'erreur
 			if ((bourse1.getValue() == null && bourse2.getValue() == null) || etudiant.getValue() == null

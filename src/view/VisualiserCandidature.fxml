@@ -8,19 +8,60 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.candidature.VisualiserCandidatureController">
    <children>
       <Button fx:id="retour" layoutX="534.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToChoixVisualiser" text="Retour" />
-      <Label fx:id="idCandidature" layoutX="14.0" layoutY="14.0" text="ID Candidature" />
-      <Label fx:id="numEtudiant" layoutX="14.0" layoutY="44.0" text="Numéro étudiant" />
-      <Label fx:id="note1" layoutX="50.0" layoutY="305.0" text="Note 1" />
-      <Label fx:id="note2" layoutX="50.0" layoutY="323.0" text="Note 2" />
-      <Label fx:id="score" layoutX="279.0" layoutY="342.0" text="Score">
+      <Label fx:id="idCandidature" layoutX="260.0" layoutY="63.0" text="ID Candidature" />
+      <Label fx:id="numEtudiant" layoutX="23.0" layoutY="38.0" text="Numéro étudiant" />
+      <Label fx:id="note1" layoutX="24.0" layoutY="187.0" text="Note 1">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="note2" layoutX="24.0" layoutY="207.0" text="Note 2">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="score" layoutX="247.0" layoutY="314.0" text="Score" textFill="#2e9e01">
          <font>
             <Font size="24.0" />
          </font></Label>
-      <Label fx:id="idRespoErasmus" layoutX="11.0" layoutY="99.0" text="Responsable Erasmus" />
-      <Label fx:id="idBourse1" layoutX="322.0" layoutY="23.0" text="ID Bourse 1" />
-      <Label fx:id="idBourse2" layoutX="322.0" layoutY="44.0" text="ID Bourse 2" />
-      <Label fx:id="idEnseignement1" layoutX="44.0" layoutY="173.0" text="ID Enseignement 1" />
-      <Label fx:id="idEnseignement2" layoutX="44.0" layoutY="191.0" text="ID Enseignement 2" />
-      <Label fx:id="idEnseignement3" layoutX="44.0" layoutY="209.0" text="ID Enseignement 3" />
+      <Label fx:id="idRespoErasmus" layoutX="23.0" layoutY="63.0" text="Responsable Erasmus" />
+      <Label fx:id="idBourse1" layoutX="449.0" layoutY="188.0" text="ID Bourse 1">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="idBourse2" layoutX="449.0" layoutY="209.0" text="ID Bourse 2">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="idEnseignement1" layoutX="253.0" layoutY="186.0" text="ID Enseignement 1">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="idEnseignement2" layoutX="253.0" layoutY="207.0" text="ID Enseignement 2">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="idEnseignement3" layoutX="253.0" layoutY="228.0" text="ID Enseignement 3">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="449.0" layoutY="152.0" text="Bourses :" textFill="#111ad3" underline="true">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="253.0" layoutY="151.0" text="Enseignements :" textFill="#111ad3" underline="true">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="152.0" text="Notes :" textFill="#111ad3" underline="true">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="237.0" layoutY="29.0" text="Candidature :">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.DatabaseConnector;
 
 public class ChoixCandidatureVisualiserController extends CandidatureController implements Initializable {
 
@@ -53,8 +53,9 @@ public class ChoixCandidatureVisualiserController extends CandidatureController 
 		ObservableList<Integer> listIDCand = FXCollections.observableArrayList();
 		
 		// Recherche des IDs dans la BDD
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+		try {
+			DatabaseConnector.connectToBDD();
+			Connection connection = DatabaseConnector.getConnection();
 			String sqlCandidature = "SELECT idCandidature FROM Candidature";
 
 			// ID Bourse
@@ -82,7 +83,12 @@ public class ChoixCandidatureVisualiserController extends CandidatureController 
 			root = loader.load();
 			
 			VisualiserCandidatureController visualiserController = loader.getController();
-			visualiserController.viewCandidature(listIDCandidature.getValue());
+			try {
+				visualiserController.viewCandidature(listIDCandidature.getValue());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			scene = new Scene(root);

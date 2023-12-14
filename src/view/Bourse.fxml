@@ -5,18 +5,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.bourse.BourseController">
    <children>
-      <Label layoutX="212.0" layoutY="14.0" text="BOURSE">
+      <Label layoutX="228.0" layoutY="30.0" text="Bourse">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
       <Button fx:id="retour" layoutX="534.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToHome" text="Retour" />
-      <Button fx:id="ajouter" layoutX="186.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToAjouter" text="Ajouter" />
-      <Button fx:id="visualiser" layoutX="361.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToChoixVisualiser" text="Visualiser" />
-      <Button fx:id="modifier" layoutX="186.0" layoutY="225.0" mnemonicParsing="false" onAction="#switchToChoixModifier" text="Modifier" />
-      <Button fx:id="supprimer" layoutX="361.0" layoutY="225.0" mnemonicParsing="false" onAction="#switchToSupprimer" text="Supprimer" />
+      <Button fx:id="ajouter" layoutX="71.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToAjouter" text="Ajouter une bourse" />
+      <Button fx:id="visualiser" layoutX="236.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchToChoixVisualiser" text="Visualiser une bourse" />
+      <Button fx:id="modifier" layoutX="238.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToChoixModifier" text="Modifier une bourse" />
+      <Button fx:id="supprimer" layoutX="415.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToSupprimer" text="Supprimer une bourse" />
    </children>
 </AnchorPane>

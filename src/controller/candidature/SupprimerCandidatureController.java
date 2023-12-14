@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.DatabaseConnector;
 
 public class SupprimerCandidatureController extends CandidatureController implements Initializable {
 	@FXML
@@ -45,8 +45,10 @@ public class SupprimerCandidatureController extends CandidatureController implem
 	}
 
 	public void supprimerCandidature() throws SQLException {
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+		try {
+			DatabaseConnector.connectToBDD();
+			Connection connection = DatabaseConnector.getConnection();
+			
 			int idCandidatureToSuppr = listeIDCandidature.getValue();
 			
 			try (Statement stat = connection.createStatement()) {
@@ -68,6 +70,8 @@ public class SupprimerCandidatureController extends CandidatureController implem
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}finally {
+			DatabaseConnector.closeBDD();
 		}
 	}
 
@@ -101,8 +105,10 @@ public class SupprimerCandidatureController extends CandidatureController implem
 		ObservableList<Integer> listIDCand = FXCollections.observableArrayList();
 
 		// Recherche des IDs dans la BDD
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+		try {
+			DatabaseConnector.connectToBDD();
+			Connection connection = DatabaseConnector.getConnection();
+			
 			String sqlCandidature = "SELECT idCandidature FROM Candidature";
 
 			try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCandidature)) {

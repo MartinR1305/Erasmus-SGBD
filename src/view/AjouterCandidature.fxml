@@ -10,13 +10,13 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.candidature.AjouterCandidatureController">
    <children>
       <Button fx:id="switchToHome" layoutX="534.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToCandidature" text="Retour" />
-      <TextField fx:id="note1" layoutX="188.0" layoutY="263.0" />
+      <TextField fx:id="note1" layoutX="239.0" layoutY="263.0" />
       <ComboBox fx:id="bourse1" layoutX="113.0" layoutY="35.0" prefWidth="150.0" />
       <ComboBox fx:id="etudiant" layoutX="113.0" layoutY="84.0" prefWidth="150.0" />
       <ComboBox fx:id="enseignement1" layoutX="36.0" layoutY="200.0" prefWidth="150.0" />
       <ComboBox fx:id="enseignement2" layoutX="225.0" layoutY="200.0" prefWidth="150.0" />
       <ComboBox fx:id="enseignement3" layoutX="409.0" layoutY="200.0" prefWidth="150.0" />
-      <TextField fx:id="note2" layoutX="188.0" layoutY="300.0" />
+      <TextField fx:id="note2" layoutX="239.0" layoutY="300.0" />
       <Button fx:id="ajouter" layoutX="411.0" layoutY="274.0" mnemonicParsing="false" onAction="#ajouterCandidature" text="Ajouter">
          <font>
             <Font size="24.0" />
@@ -31,8 +31,8 @@
       <Label layoutX="442.0" layoutY="182.0" text="Enseignement 3" />
       <ComboBox fx:id="enseignant" layoutX="113.0" layoutY="129.0" prefWidth="150.0" />
       <Label layoutX="32.0" layoutY="133.0" text="Enseignant" />
-      <Label layoutX="32.0" layoutY="267.0" text="Note Responsable Erasmus" />
-      <Label layoutX="32.0" layoutY="304.0" text="Note Responsable Local" />
+      <Label layoutX="32.0" layoutY="267.0" text="Note Responsable Erasmus (sur 100)" />
+      <Label layoutX="32.0" layoutY="304.0" text="Note Responsable Local (sur 100)" />
       <Label fx:id="msgError" layoutX="130.0" layoutY="351.0" text="Vous devez remplir correctement les champs ci-dessus" textFill="RED" visible="false" />
       <Label fx:id="msgSuccess" layoutX="211.0" layoutY="360.0" text="La candidature a bien été ajoutée" textFill="#00ff3c" visible="false" />
       <Label fx:id="msgErrorEtudiant" layoutX="186.0" layoutY="351.0" text="Cet étudiant possède déjà une candidature" textFill="RED" visible="false" />

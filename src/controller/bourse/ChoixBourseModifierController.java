@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.DatabaseConnector;
 
 public class ChoixBourseModifierController extends HomeController implements Initializable{
 
@@ -44,8 +44,10 @@ public class ChoixBourseModifierController extends HomeController implements Ini
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ObservableList<Integer> listIDB = FXCollections.observableArrayList();
 		
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+		try {
+			
+			DatabaseConnector.connectToBDD();
+			Connection connection = DatabaseConnector.getConnection();
 			String sqlBourse = "SELECT idBourse FROM Bourse";
 
 			// ID Bourse

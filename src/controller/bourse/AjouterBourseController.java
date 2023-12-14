@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +25,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.DatabaseConnector;
 
 public class AjouterBourseController extends HomeController implements Initializable {
 
@@ -49,8 +49,11 @@ public class AjouterBourseController extends HomeController implements Initializ
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ObservableList<Integer> listIDEnseignant = FXCollections.observableArrayList();
 
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+		try {
+			
+			DatabaseConnector.connectToBDD();
+			Connection connection = DatabaseConnector.getConnection();
+
 			String sqlEnseignant = "SELECT idEnseignant FROM Enseignant";
 
 			// ID Enseignant
@@ -69,47 +72,44 @@ public class AjouterBourseController extends HomeController implements Initializ
 		}
 	}
 
-	public void ajouterBourse(ActionEvent event) {
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+	public void ajouterBourse(ActionEvent event) throws SQLException {
+		DatabaseConnector.connectToBDD();
+		Connection connection = DatabaseConnector.getConnection();
 
-			if (destination.getText() == null || nbPostesDispo.getText() == null
-					|| listeEnseignant.getValue() == null) {
+		if (destination.getText() == null || nbPostesDispo.getText() == null
+				|| listeEnseignant.getValue() == null) {
+			displayMessage(errorMsg);
+		} else {
+			if (!isInteger(nbPostesDispo.getText())) {
 				displayMessage(errorMsg);
 			} else {
-				if (!isInteger(nbPostesDispo.getText())) {
-					displayMessage(errorMsg);
-				} else {
 
-					String strDestination = destination.getText();
-					int intPostesDispo = Integer.valueOf(nbPostesDispo.getText());
-					int idEnseignant = listeEnseignant.getValue();
+				String strDestination = destination.getText();
+				int intPostesDispo = Integer.valueOf(nbPostesDispo.getText());
+				int idEnseignant = listeEnseignant.getValue();
 
-					try (Statement stat = connection.createStatement()) {
-						String sql = "INSERT INTO Bourse (destination, nombrePostes, responsableLocal) VALUES (?, ?, ?)";
-						try (PreparedStatement statement = connection.prepareStatement(sql)) {
-							statement.setString(1, strDestination);
-							statement.setInt(2, intPostesDispo);
-							statement.setInt(3, idEnseignant);
+				try (Statement stat = connection.createStatement()) {
+					String sql = "INSERT INTO Bourse (destination, nombrePostes, responsableLocal) VALUES (?, ?, ?)";
+					try (PreparedStatement statement = connection.prepareStatement(sql)) {
+						statement.setString(1, strDestination);
+						statement.setInt(2, intPostesDispo);
+						statement.setInt(3, idEnseignant);
 
-							int rowsAffected = statement.executeUpdate();
-							if (rowsAffected > 0) {
-								System.out.println("Insertion réussie.");
-								destination.setText(null);
-								nbPostesDispo.setText(null);
-								listeEnseignant.setValue(null);
-								displayMessage(successMsg);
-							} else {
-								System.out.println("Échec de l'insertion.");
-							}
+						int rowsAffected = statement.executeUpdate();
+						if (rowsAffected > 0) {
+							System.out.println("Insertion réussie.");
+							destination.setText(null);
+							nbPostesDispo.setText(null);
+							listeEnseignant.setValue(null);
+							displayMessage(successMsg);
+						} else {
+							System.out.println("Échec de l'insertion.");
 						}
-					} catch (SQLException e) {
-						e.printStackTrace();
 					}
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 

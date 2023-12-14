@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.DatabaseConnector;
 
 public class SupprimerBourseController extends HomeController implements Initializable{
 	
@@ -47,8 +47,9 @@ public class SupprimerBourseController extends HomeController implements Initial
 	}
 
     public void supprimerBourse() throws SQLException {
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+		try {
+			DatabaseConnector.connectToBDD();
+			Connection connection = DatabaseConnector.getConnection();
 			int idBourseToSuppr = listeIDBourse.getValue();
 			
 			try (Statement stat = connection.createStatement()) {
@@ -70,6 +71,8 @@ public class SupprimerBourseController extends HomeController implements Initial
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}finally {
+			DatabaseConnector.closeBDD();
 		}
     }
 
@@ -113,8 +116,9 @@ public class SupprimerBourseController extends HomeController implements Initial
 	public void obtenirListIDEtActualiserComboBox() {
 		ObservableList<Integer> listIDB = FXCollections.observableArrayList();
 		
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root",
-				"Smo!Aoki1305")) {
+		try {
+			DatabaseConnector.connectToBDD();
+			Connection connection = DatabaseConnector.getConnection();
 			String sqlBourse = "SELECT idBourse FROM Bourse";
 
 			// ID Bourse

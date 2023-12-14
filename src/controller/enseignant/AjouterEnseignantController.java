@@ -3,7 +3,6 @@ package controller.enseignant;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.DatabaseConnector;
 
 public class AjouterEnseignantController extends HomeController{
 
@@ -55,7 +55,11 @@ public class AjouterEnseignantController extends HomeController{
 	private Button retour;
 
 	public void creerEnseignant() {
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erasmus", "root", "Babalou1942")) {
+		try {
+			
+			DatabaseConnector.connectToBDD();
+			conn = DatabaseConnector.getConnection();
+			
 			// on récupère les valeurs des champs de texte
 			String nomEnseignant = nom.getText();
 			String prenomEnseignant = prenom.getText();

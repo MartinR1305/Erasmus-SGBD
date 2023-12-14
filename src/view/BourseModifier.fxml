@@ -5,20 +5,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.bourse.BourseModifierController">
    <children>
       <Button fx:id="retour" layoutX="534.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToChoixBourse" text="Retour" />
-      <TextField fx:id="destination" layoutX="227.0" layoutY="122.0" />
-      <TextField fx:id="nbPostesDisponible" layoutX="227.0" layoutY="174.0" />
-      <ComboBox fx:id="idEnseignant" layoutX="226.0" layoutY="229.0" prefWidth="150.0" />
-      <Button fx:id="modifier" layoutX="269.0" layoutY="284.0" mnemonicParsing="false" onAction="#modifierBourse" text="Modifier" />
-      <Label layoutX="154.0" layoutY="126.0" text="Destination :" />
-      <Label layoutX="72.0" layoutY="178.0" text="Nombre Postes Disponible :" />
-      <Label layoutX="54.0" layoutY="233.0" text="Enseignant Responsable Local :" />
-      <Label fx:id="errorMsg" layoutX="167.0" layoutY="316.0" text="Veuillez remplir correctement les champs ci-dessus" textFill="RED" visible="false" />
-      <Label fx:id="successMsg" layoutX="205.0" layoutY="334.0" text="La bourse a été modifié avec succès" textFill="#00ff0d" visible="false" />
+      <TextField fx:id="destination" layoutX="231.0" layoutY="118.0" />
+      <TextField fx:id="nbPostesDisponible" layoutX="231.0" layoutY="170.0" />
+      <ComboBox fx:id="idEnseignant" layoutX="230.0" layoutY="225.0" prefWidth="150.0" />
+      <Button fx:id="modifier" layoutX="263.0" layoutY="274.0" mnemonicParsing="false" onAction="#modifierBourse" prefHeight="50.0" prefWidth="76.0" text="Modifier" />
+      <Label layoutX="158.0" layoutY="122.0" text="Destination :" />
+      <Label layoutX="76.0" layoutY="174.0" text="Nombre Postes Disponible :" />
+      <Label layoutX="58.0" layoutY="229.0" text="Enseignant Responsable Local :" />
+      <Label fx:id="errorMsg" layoutX="167.0" layoutY="335.0" text="Veuillez remplir correctement les champs ci-dessus" textFill="RED" visible="false" />
+      <Label fx:id="successMsg" layoutX="205.0" layoutY="353.0" text="La bourse a été modifié avec succès" textFill="#00ff0d" visible="false" />
       <Label fx:id="labelIDBourse" layoutX="276.0" layoutY="86.0" text="ID Bourse" />
+      <Label layoutX="100.0" layoutY="35.0" text="Modifiez la bourse séléctionnée :">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -22,7 +22,6 @@ public class Main extends Application {
 //		DatabaseConnector.createBDD();
 //		DatabaseConnector.createData();
 		DatabaseConnector.closeBDD();
-		System.out.println("ok");
 	}
 
 	@Override
